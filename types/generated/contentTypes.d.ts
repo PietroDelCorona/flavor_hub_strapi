@@ -520,7 +520,7 @@ export interface ApiComentaryComentary extends Struct.CollectionTypeSchema {
   info: {
     singularName: 'comentary';
     pluralName: 'comentaries';
-    displayName: 'Comentary';
+    displayName: 'Commentary';
     description: '';
   };
   options: {
