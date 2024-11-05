@@ -432,15 +432,15 @@ export interface PluginUsersPermissionsRole
 
 export interface PluginUsersPermissionsUser
   extends Struct.CollectionTypeSchema {
-  collectionName: 'up_users';
+  collectionName: 'users';
   info: {
-    name: 'user';
-    description: '';
     singularName: 'user';
     pluralName: 'users';
     displayName: 'User';
+    description: '';
   };
   options: {
+    increments: true;
     timestamps: true;
     draftAndPublish: false;
   };
@@ -453,22 +453,10 @@ export interface PluginUsersPermissionsUser
       }>;
     email: Schema.Attribute.Email &
       Schema.Attribute.Required &
-      Schema.Attribute.SetMinMaxLength<{
-        minLength: 6;
-      }>;
-    provider: Schema.Attribute.String;
-    password: Schema.Attribute.Password &
-      Schema.Attribute.Private &
-      Schema.Attribute.SetMinMaxLength<{
-        minLength: 6;
-      }>;
-    resetPasswordToken: Schema.Attribute.String & Schema.Attribute.Private;
-    confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
-    confirmed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
-    blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
-    role: Schema.Attribute.Relation<
-      'manyToOne',
-      'plugin::users-permissions.role'
+      Schema.Attribute.Unique;
+    userFavorites: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::user-favorites.user-favorites'
     >;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
