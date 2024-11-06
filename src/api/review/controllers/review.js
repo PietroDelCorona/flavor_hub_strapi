@@ -12,6 +12,10 @@ module.exports = createCoreController('api::review.review', ({ strapi }) => ({
             populate: '*',
         });
 
+        if (reviews.length == 0) {
+            return ctx.send({message: 'Ainda não há avaliação para as receitas'})
+        }
+
         return ctx.send({ data: reviews}, 200);
     },
 

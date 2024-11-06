@@ -14,7 +14,6 @@ module.exports = createCoreController('api::comentary.comentary', ({ strapi }) =
         });
 
         if (!coments || coments.length === 0) {
-            // Se a receita não possui comentários, sugere ao usuário deixar um comentário
             return ctx.send({
             data: coments,
             message: 'Nenhum comentário encontrado. Seja o primeiro a comentar!',
